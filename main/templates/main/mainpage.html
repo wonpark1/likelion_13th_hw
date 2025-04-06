@@ -1,0 +1,66 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<h1>2주차 세션 정리</h1>
+<p>여기에 2주차 강의/세션 내용 정리를 넣어주세요!</p>
+<h2>환경 설정 명령어</h2>
+<ul>
+  <li><strong>pipenv shell</strong>: 가상환경 설치 후 활성화</li>
+  <li><strong>pip install django</strong>: Django 설치</li>
+  <li>
+    <strong>touch .gitignore</strong> &rarr; db나 media처럼 Git 충돌이 날 수
+    있는 파일들을<br />
+    Git으로부터 제외시켜 충돌을 방지합니다.
+  </li>
+</ul>
+
+<!-- views.py 내용 -->
+<h2>views.py 작성 &amp; HTML 페이지 연결</h2>
+<p>
+  <em>views.py</em>에서는 <code>render</code> 함수를 이용해 템플릿을 호출합니다.
+</p>
+<p>
+  <code
+    >from django.shortcuts import render def mainpage(request): # 함수 선언
+    return render(request, 'main/mainpage.html') def secondpage(request): #
+    Django가 secondpage.html 파일을 찾아서 연결 return render(request,
+    'main/secondpage.html')
+  </code>
+</p>
+
+<!-- 템플릿(Template) 언어 설명 -->
+<h2>템플릿 언어 (Django Template Language)</h2>
+<ol>
+  <li>
+    <strong>템플릿 필터</strong>
+    &mdash; 앞서 배운 템플릿 변수를 특정 서식에 따라 변환하는 것 (약 30여 가지
+    내장 필터가 제공됩니다)
+  </li>
+
+  <li>
+    <strong>템플릿 주석</strong>
+    &mdash; HTML 내용 중 주석이 필요한 경우 사용
+    <br /><code>{# 주석처리 할 내용 #}</code>
+  </li>
+</ol>
+
+<h2>템플릿 상속 & include</h2>
+<ul>
+  <li>
+    <strong>base.html(공통 레이아웃)</strong>: block content 로 각 페이지별
+    내용만 채움
+  </li>
+  <li>
+    <strong>shared/_navbar.html:</strong>: 헤더/네비게이션 바 같은 반복되는
+    부분을 include로 분리
+  </li>
+  <li>
+    <strong>settings.py</strong> TEMPLATES의 'DIRS' 설정이나 os.path.join 사용
+  </li>
+</ul>
+
+<a
+  href="{% url 'secondpage' %}"
+  style="font-size: 1.5rem; font-weight: bold; color: #3817ee"
+>
+  Go to Second Page
+</a>
+{% endblock %}
